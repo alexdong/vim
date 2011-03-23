@@ -92,6 +92,12 @@ set autoread
 " Set OmniCompletion
 set ofu=syntaxcomplete#Complete
 
+" Set OmniCompletion
+set ofu=syntaxcomplete#Complete
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
 " Enable matchit
 source $VIMRUNTIME/macros/matchit.vim
 
@@ -155,6 +161,10 @@ set smarttab
 set lbr
 
 
+<<<<<<< HEAD
+map <leader>t2 :setlocal shiftwidth=2<cr>
+map <leader>t4 :setlocal shiftwidth=4<cr>
+map <leader>t8 :setlocal shiftwidth=4<cr>
 set textwidth=72 "Text width 72 characters"
 set cindent
 set nocp "No compatible
@@ -495,6 +505,7 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
+<<<<<<< HEAD
 au FileType python call PythonSettings()
 function! PythonSettings()
     let python_highlight_all = 1
@@ -585,6 +596,9 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<CR>
+
+" Reload mod_wsgi for quick server side code changes
+noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 
 " Programming helps to quickly navigate the soruce "
 map <silent> <F6> :vim <cword> **/*.py<CR>
