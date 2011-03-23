@@ -581,7 +581,7 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 map <leader>q :e ~/buffer<CR>
 
 " Reload mod_wsgi for quick server side code changes
-noremap <Leader>r :!touch ./bin/run.wsgi
+noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 
 " Programming helps to quickly navigate the soruce "
 map <silent> <F6> :vim <cword> **/*.py<CR>
