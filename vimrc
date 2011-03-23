@@ -86,11 +86,11 @@ set history=300
 filetype plugin on
 filetype indent on
 
+" Auto-reload buffers
+set autoread
+
 " Set OmniCompletion
 set ofu=syntaxcomplete#Complete
-
-" Set to auto read when a file is changed from the outside
-set autoread
 
 " Enable matchit
 source $VIMRUNTIME/macros/matchit.vim
@@ -155,10 +155,7 @@ set smarttab
 set lbr
 
 
-map <leader>t2 :setlocal shiftwidth=2<cr>
-map <leader>t4 :setlocal shiftwidth=4<cr>
-map <leader>t8 :setlocal shiftwidth=4<cr>
-set textwidth=79 "Text width 72 characters"
+set textwidth=72 "Text width 72 characters"
 set cindent
 set nocp "No compatible
 set wrap "Wrap lines
@@ -498,10 +495,19 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
-""au FileType python set nocindent
-let python_highlight_all = 1
-autocmd FileType python compiler pylint
-au FileType python syn keyword pythonDecorator True None False self
+au FileType python call PythonSettings()
+function! PythonSettings()
+    let python_highlight_all = 1
+    " autocmd FileType python compiler pylint
+    au FileType python syn keyword pythonDecorator True None False self
+    set ts=4  " Tabs are 4 spaces
+    set shiftwidth=4  " Tabs under smart indent
+    set nocp incsearch
+    set cinoptions=:0,p0,t0
+    set cinwords=if,else,while,do,for,switch,case
+    set formatoptions=tcqr
+    set cindent
+endfunction
 
 
 """"""""""""""""""""""""""""""
