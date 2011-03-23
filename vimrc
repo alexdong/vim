@@ -161,7 +161,6 @@ set smarttab
 set lbr
 
 
-<<<<<<< HEAD
 map <leader>t2 :setlocal shiftwidth=2<cr>
 map <leader>t4 :setlocal shiftwidth=4<cr>
 map <leader>t8 :setlocal shiftwidth=4<cr>
@@ -505,7 +504,6 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
-<<<<<<< HEAD
 au FileType python call PythonSettings()
 function! PythonSettings()
     let python_highlight_all = 1
