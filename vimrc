@@ -184,7 +184,7 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 " set gfn=Courier\ New:h12
-set gfn=Monaco:h11
+set gfn=Consolas:h11
 set shell=/bin/zsh
 
 if has("gui_running")
