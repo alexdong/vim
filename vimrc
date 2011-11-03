@@ -552,10 +552,10 @@ au BufNewFile,BufRead *.less set filetype=less
 
 
 """"""""""""""""""""""""""""""
-" => Jinja and Jinja2 section
+" => Jinja section
 """""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.jinja set filetype=jinja
 au BufNewFile,BufRead *.jinja2 set filetype=jinja
-
 
 """"""""""""""""""""""""""""""
 " => Haskell section
