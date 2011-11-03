@@ -552,6 +552,12 @@ au BufNewFile,BufRead *.less set filetype=less
 
 
 """"""""""""""""""""""""""""""
+" => Jinja and Jinja2 section
+"""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.jinja2 set filetype=jinja
+
+
+""""""""""""""""""""""""""""""
 " => Haskell section
 """""""""""""""""""""""""""""""
 " use ghc functionality for haskell files
