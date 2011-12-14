@@ -164,7 +164,7 @@ set lbr
 map <leader>t2 :setlocal shiftwidth=2<cr>
 map <leader>t4 :setlocal shiftwidth=4<cr>
 map <leader>t8 :setlocal shiftwidth=4<cr>
-set textwidth=72 "Text width 72 characters"
+" set textwidth=72 "Text width 72 characters"
 set cindent
 set nocp "No compatible
 set wrap "Wrap lines
@@ -536,13 +536,6 @@ function! JavaScriptSettings()
 
     "make F5 call make for linting etc.
 endfunction
-
-""""""""""""""""""""""""""""""
-" => Html section
-"""""""""""""""""""""""""""""""
-" au FileType javascript call HtmlFold()
-" au FileType javascript setl fen
-" au FileType javascript setl nocindent
 
 
 """"""""""""""""""""""""""""""
