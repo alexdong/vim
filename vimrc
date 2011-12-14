@@ -41,6 +41,7 @@
 "    -> Python section
 "    -> JavaScript section
 "    -> Ack-grep section
+"    -> ConqueTerm section
 "
 " Plugins_Included:
 "     > minibufexpl.vim - http://www.vim.org/scripts/script.php?script_id=159
@@ -184,7 +185,8 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 " set gfn=Courier\ New:h12
-set gfn=Consolas:h11
+" set gfn=Consolas:h11
+set gfn=Monaco:h11
 set shell=/bin/zsh
 
 if has("gui_running")
@@ -672,6 +674,10 @@ function! s:AckFromSearch(cmd, args)
     let search = substitute(search,'\(\\<\|\\>\)','\\b','g')
     call s:Ack(a:cmd, '"' .  search .'" '. a:args)
 endfunction
+
+" ConqueTerm
+let g:ConqueTerm_Color = 1
+nmap <leader>sh :ConqueTerm zsh<CR>
 
 command! -bang -nargs=* -complete=file Ack call s:Ack('grep<bang>',<q-args>)
 command! -bang -nargs=* -complete=file AckAdd call s:Ack('grepadd<bang>', <q-args>)
