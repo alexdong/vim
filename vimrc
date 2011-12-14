@@ -374,6 +374,22 @@ try
 catch
 endtry
 
+" FuzzyFinder
+" ,f -> list all files in current director
+" ,b -> list all buffers
+" ,t -> auto complete/fuzzy find files. 
+" ,bt -> rebuild the tags file with fuzzyfinder specific tags. 
+nmap <leader>f :FufFileWithCurrentBufferDir<CR>
+nmap <leader>b :FufBuffer<CR>
+nmap <leader>t :FufTaggedFile<CR>
+nmap <leader>bt :!ctags -R --extra=+f .<CR>
+
+" NERDTree
+" ,d -> To open up NERD tree buffer
+" ,dd -> To close the NERD tree. 
+nmap <leader>d :NERDTree<CR>
+nmap <leader>dd :NERDTreeClose<CR>
+
 
 """"""""""""""""""""""""""""""
 " => Statusline
