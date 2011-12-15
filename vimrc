@@ -119,9 +119,18 @@ map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 
-" Better status
+
+""""""""""""""""""""""""""""""
+" => Statusline
+""""""""""""""""""""""""""""""
 if has('statusline')
     set laststatus=2
+    " Broken down into easily includeable segments
+    set statusline=%<%f\   " Filename
+    set statusline+=%w%h%m%r " Options
+    set statusline+=\ [%{&ff}/%Y]            " filetype
+    set statusline+=\ [%{getcwd()}]          " current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -145,8 +154,12 @@ set whichwrap+=<,>,h,l
 set ignorecase "Ignore case when searching
 
 set hlsearch "Highlight search things
+nmap <silent> <leader>/ :nohlsearch<CR> "Clearing highlight search
+
 
 set incsearch "Make search act like search in modern browsers
+
+set gdefault " the /g flag on :s substitution is on by default. 
 
 set magic "Set magic on, for regular expressions
 
@@ -224,6 +237,8 @@ set nobackup
 set nowb
 set noswapfile
 
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
 
 
 
@@ -398,23 +413,13 @@ nmap <leader>bt :!ctags -R --extra=+f .<CR>
 " ,dd -> To close the NERD tree. 
 nmap <leader>d :NERDTree<CR>
 nmap <leader>dd :NERDTreeClose<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
 
-
-""""""""""""""""""""""""""""""
-" => Statusline
-""""""""""""""""""""""""""""""
-" Always hide the statusline
-set laststatus=2
-
-" Format the statusline
-" "set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-" set statusline=%F%m%r%h%w\ [%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-
-
-function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/alexdong/', "~/", "g")
-    return curdir
-endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -681,6 +686,10 @@ function! s:AckFromSearch(cmd, args)
     let search = substitute(search,'\(\\<\|\\>\)','\\b','g')
     call s:Ack(a:cmd, '"' .  search .'" '. a:args)
 endfunction
+
+" Session
+let g:session_autoload = 'prompt'
+let g:session_autosave = 'yes'
 
 " ConqueTerm. Show colors. Close buffer when shell is ended. 
 " Support sessions, keep updating when there are results. 
