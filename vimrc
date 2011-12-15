@@ -96,8 +96,11 @@ set ofu=syntaxcomplete#Complete
 " Set OmniCompletion
 set ofu=syntaxcomplete#Complete
 
-" Set to auto read when a file is changed from the outside
-set autoread
+" Set to automatically change to current directory. 
+set autochdir
+
+" Display the cursor line. 
+set cursorline
 
 " Enable matchit
 source $VIMRUNTIME/macros/matchit.vim
@@ -116,6 +119,10 @@ map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 
+" Better status
+if has('statusline')
+    set laststatus=2
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -675,8 +682,13 @@ function! s:AckFromSearch(cmd, args)
     call s:Ack(a:cmd, '"' .  search .'" '. a:args)
 endfunction
 
-" ConqueTerm
+" ConqueTerm. Show colors. Close buffer when shell is ended. 
+" Support sessions, keep updating when there are results. 
 let g:ConqueTerm_Color = 1
+let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_SessionSupport = 1
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_StartMessages = 0
 nmap <leader>sh :ConqueTerm zsh<CR>
 
 command! -bang -nargs=* -complete=file Ack call s:Ack('grep<bang>',<q-args>)
