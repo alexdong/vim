@@ -690,6 +690,10 @@ endfunction
 " Session
 let g:session_autoload = 'prompt'
 let g:session_autosave = 'yes'
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+nmap <leader>ss :SaveSession<CR>   " Save session
+nmap <leader>so :OpenSession<CR>   " Open session
+nmap <leader>sd :DeleteSession<CR> " Delete session
 
 " ConqueTerm. Show colors. Close buffer when shell is ended. 
 " Support sessions, keep updating when there are results. 
