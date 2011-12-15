@@ -417,7 +417,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
 
@@ -703,6 +703,11 @@ let g:ConqueTerm_SessionSupport = 1
 let g:ConqueTerm_ReadUnfocused = 1
 let g:ConqueTerm_StartMessages = 0
 nmap <leader>sh :ConqueTerm zsh<CR>
+
+" Settings for VimClojure
+let vimclojure#HighlightBuiltins = 1
+let vimclojure#ParenRainbowColors = 1
+let vimclojure#FuzzyIndent = 1
 
 command! -bang -nargs=* -complete=file Ack call s:Ack('grep<bang>',<q-args>)
 command! -bang -nargs=* -complete=file AckAdd call s:Ack('grepadd<bang>', <q-args>)
