@@ -96,9 +96,6 @@ set ofu=syntaxcomplete#Complete
 " Set OmniCompletion
 set ofu=syntaxcomplete#Complete
 
-" Set to automatically change to current directory. 
-set autochdir
-
 " Display the cursor line. 
 set cursorline
 
@@ -206,7 +203,7 @@ syntax enable "Enable syntax hl
 " Set font according to system
 " set gfn=Courier\ New:h12
 " set gfn=Consolas:h11
-set gfn=Monaco:h11
+" set gfn=Monaco\ 11
 set shell=/bin/zsh
 
 if has("gui_running")
@@ -697,6 +694,7 @@ nmap <leader>sd :DeleteSession<CR> " Delete session
 
 " ConqueTerm. Show colors. Close buffer when shell is ended. 
 " Support sessions, keep updating when there are results. 
+let g:ConqueTerm_FastMode = 0
 let g:ConqueTerm_Color = 1
 let g:ConqueTerm_CloseOnEnd = 1
 let g:ConqueTerm_SessionSupport = 1
@@ -706,8 +704,8 @@ nmap <leader>sh :ConqueTerm zsh<CR>
 
 " Settings for VimClojure
 let vimclojure#HighlightBuiltins = 1
-let vimclojure#ParenRainbowColors = 1
 let vimclojure#FuzzyIndent = 1
+
 
 command! -bang -nargs=* -complete=file Ack call s:Ack('grep<bang>',<q-args>)
 command! -bang -nargs=* -complete=file AckAdd call s:Ack('grepadd<bang>', <q-args>)
