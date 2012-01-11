@@ -408,14 +408,16 @@ nmap <leader>bt :!ctags -R --extra=+f .<CR>
 " NERDTree
 " ,d -> To open up NERD tree buffer
 " ,dd -> To close the NERD tree. 
-nmap <leader>d :NERDTree<CR>
+nmap <leader>d :NERDTree .<CR>
 nmap <leader>dd :NERDTreeClose<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=0
+let NERDTreeQuitOnOpen=0
+let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
+let NERDChristmasTree=1
+let NERDTreeShowLineNumbers=1
 
 
 
