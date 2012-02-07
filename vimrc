@@ -68,11 +68,14 @@
 "       Find files fast (similar to TextMate's feature):
 "           info -> :help fuzzyfinder@en
 "
-"  Revisions:
-"     > 3.3: Added syntax highlighting for Mako mako.vim 
-"     > 3.2: Turned on python_highlight_all for better syntax
-"            highlighting for Python
-"     > 3.1: Added revisions ;) and bufexplorer.vim
+"     > sparkup.vim - https://github.com/rstacruz/sparkup
+"       Ctrl-e to expand css style path into html tags. 
+"
+"     > html_autoclosetag.vim - http://www.vim.org/scripts/script.php?script_id=2591
+"       Automatically close html tags for you.  
+"
+"     > autoclose.vim - http://www.vim.org/scripts/script.php?script_id=2009
+"       Automatically close parenthesis for you. 
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -172,8 +175,8 @@ set clipboard+=unnamed " Yanks go on clipboard instead
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set smarttab
 
 set lbr
@@ -574,10 +577,15 @@ au BufNewFile,BufRead *.less set filetype=less
 
 
 """"""""""""""""""""""""""""""
+" => html section
+"""""""""""""""""""""""""""""""
+au FileType xhtml,xml,html,htmljinja so ~/.vim_runtime/ftplugin/html_autoclosetag.vim
+
+""""""""""""""""""""""""""""""
 " => Jinja section
 """""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.jinja set filetype=jinja
-au BufNewFile,BufRead *.jinja2 set filetype=jinja
+au BufNewFile,BufRead *.jinja set syntax=htmljinja
+au BufNewFile,BufRead *.jinja2 set syntax=htmljinja
 
 """"""""""""""""""""""""""""""
 " => Haskell section
