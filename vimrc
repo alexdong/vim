@@ -206,7 +206,7 @@ syntax enable "Enable syntax hl
 " Set font according to system
 " set gfn=Courier\ New:h12
 " set gfn=Consolas:h11
-" set gfn=Monaco\ 11
+set gfn=Monaco:h12
 set shell=/bin/zsh
 
 if has("gui_running")
@@ -701,16 +701,6 @@ set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 nmap <leader>ss :SaveSession<CR>   " Save session
 nmap <leader>so :OpenSession<CR>   " Open session
 nmap <leader>sd :DeleteSession<CR> " Delete session
-
-" ConqueTerm. Show colors. Close buffer when shell is ended. 
-" Support sessions, keep updating when there are results. 
-let g:ConqueTerm_FastMode = 0
-let g:ConqueTerm_Color = 1
-let g:ConqueTerm_CloseOnEnd = 1
-let g:ConqueTerm_SessionSupport = 1
-let g:ConqueTerm_ReadUnfocused = 1
-let g:ConqueTerm_StartMessages = 0
-nmap <leader>sh :ConqueTerm zsh<CR>
 
 " Settings for VimClojure
 let vimclojure#HighlightBuiltins = 1
