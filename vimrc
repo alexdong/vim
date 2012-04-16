@@ -86,6 +86,9 @@
 " Sets how many lines of history VIM has to remember
 set history=300
 
+"Running vim, not Vi
+set nocompatible
+
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -196,6 +199,11 @@ set wrapmargin=7
 " No sound on errors
 set noerrorbells
 set novisualbell
+
+" Filetype detection, indenting and plugins
+filetype on
+filetype indent on 
+filetype plugin on
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -489,6 +497,7 @@ let g:bufExplorerShowRelativePath=1
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby compiler ruby
 
 
 
@@ -509,10 +518,16 @@ au! BufRead,BufNewFile *.json setfiletype json
 """"""""""""""""""""""""""""""
 " => Ruby on Rails
 """"""""""""""""""""""""""""""
+
+let g:rubycomplete_rails = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_buffer_loading = 1
+
 " Change which file opens after executing :Rails command
 let g:rails_default_file='config/database.yml'
 source ~/.vim_runtime/ftplugin/ri.vim
 
+autocmd FileType ruby compiler ruby
 au FileType ruby call RubySettings()
 function! RubySettings()
   set ts=2  " Tabs are 2 spaces
