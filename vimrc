@@ -126,15 +126,15 @@ autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
-if has('statusline')
-    set laststatus=2
+" if has('statusline')
+    " set laststatus=2
     " Broken down into easily includeable segments
-    set statusline=%<%f\   " Filename
-    set statusline+=%w%h%m%r " Options
-    set statusline+=\ [%{&ff}/%Y]            " filetype
-    set statusline+=\ [%{getcwd()}]          " current dir
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
+    " set statusline=%<%f\   " Filename
+    " set statusline+=%w%h%m%r " Options
+    " set statusline+=\ [%{&ff}/%Y]            " filetype
+    " set statusline+=\ [%{getcwd()}]          " current dir
+    " set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+" endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -214,7 +214,7 @@ syntax enable "Enable syntax hl
 " Set font according to system
 " set gfn=Courier\ New:h12
 " set gfn=Consolas:h11
-set gfn=Monaco:h12
+set gfn=Monaco:h11
 set shell=/bin/zsh
 
 if has("gui_running")
@@ -496,9 +496,6 @@ let g:bufExplorerShowRelativePath=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby compiler ruby
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -519,13 +516,27 @@ au! BufRead,BufNewFile *.json setfiletype json
 " => Ruby on Rails
 """"""""""""""""""""""""""""""
 
-let g:rubycomplete_rails = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_buffer_loading = 1
+" Use rubycomplete. Turn it on for ruby buffer, auto rails support and include
+" classes in the list. 
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby compiler ruby
+
+
+" Ragtag settings
+inoremap <M-o>       <Esc>o
+inoremap <C-j>       <Down>
+let g:ragtag_global_maps = 1
 
 " Change which file opens after executing :Rails command
 let g:rails_default_file='config/database.yml'
 source ~/.vim_runtime/ftplugin/ri.vim
+
+" Auto code complete
+imap <S-CR>    <CR><CR>end<Esc>-cc
+
 
 autocmd FileType ruby compiler ruby
 au FileType ruby call RubySettings()
@@ -543,10 +554,19 @@ function! RubySettings()
   map <leader>ra :A<CR>
   map <leader>rr :R<CR>
 
-  let g:rubycomplete_buffer_loading = 1
-  let g:rubycomplete_rails = 1
-  let g:rubycomplete_classes_in_global = 1
-endfunction
+  " :make to run the current test
+  autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ \"%:p\"
+  autocmd FileType ruby
+        \ if expand('%') =~# '_test\.rb$' |
+        \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
+        \ elseif expand('%') =~# '_spec\.rb$' |
+        \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
+        \ else |
+        \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
+        \ endif
+  autocmd User Bundler
+        \ if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
+  endfunction
 
 """"""""""""""""""""""""""""""
 " => Python section
