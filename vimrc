@@ -307,7 +307,6 @@ cno $q <C-\>eDeleteTillSlash()<cr>
 cnoremap <C-A>		<Home>
 cnoremap <C-E>		<End>
 cnoremap <C-K>		<C-U>
-
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
@@ -593,15 +592,14 @@ au FileType javascript call JavaScriptSettings()
 function! JavaScriptSettings() 
     set makeprg=java\ org.mozilla.javascript.tools.shell.Main\ ~/bin/jslint.js\ %
     set errorformat=%f(%l):\ %m
-    set ts=4  " Tabs are 4 spaces
-    set shiftwidth=4  " Tabs under smart indent
+    set ts=2  " Tabs are 4 spaces
+    set shiftwidth=2  " Tabs under smart indent
     set nocp incsearch
     set cinoptions=:0,p0,t0
     set cinwords=if,else,while,do,for,switch,case
     set formatoptions=tcqr
     set cindent
 
-    "make F5 call make for linting etc.
 endfunction
 
 
@@ -664,10 +662,16 @@ noremap <Leader>sv :so ~/.vim_runtime/vimrc<CR>
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<CR>
+noremap <leader>q :e ~/buffer<CR>
 
 " Reload mod_wsgi for quick server side code changes
 noremap <Leader>r :!touch ./bin/run.wsgi<CR>
+
+" Ctrl-space will select current work. 
+noremap <c-space> viw
+
+" Ctrl-enter will create a new line after {} and insert a line. 
+inoremap <C-CR> <CR><Esc>O
 
 " Programming helps to quickly navigate the soruce "
 map <silent> <F6> :vim <cword> **/*.py<CR>
@@ -739,6 +743,19 @@ nmap <leader>sd :DeleteSession<CR> " Delete session
 
 " Settings for VimClojure
 let vimclojure#HighlightBuiltins = 1
+let vimclojure#FuzzyIndent = 1
+let vimclojure#ParenRainbow = 1
+let vimclojure#ParenRainbowColors = {
+              \ '1': 'guifg=green',
+              \ '2': 'guifg=yellow',
+              \ '3': 'guifg=gray',
+              \ '4': 'guifg=red',
+              \ '5': 'guifg=purple',
+              \ '6': 'guifg=pink',
+              \ '7': 'guifg=cyan',
+              \ '8': 'guifg=orange',
+              \ }
+let vimclojure#DynamicHighlighting = 1
 let vimclojure#FuzzyIndent = 1
 
 
