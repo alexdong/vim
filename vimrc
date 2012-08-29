@@ -654,7 +654,6 @@ endtry
 noremap <Leader>ev :e ~/.vim_runtime/vimrc<CR>
 noremap <Leader>sv :so ~/.vim_runtime/vimrc<CR>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -667,6 +666,9 @@ noremap <leader>q :e ~/buffer<CR>
 " Reload mod_wsgi for quick server side code changes
 noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 
+" Surround current word with "
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel"
+
 " Ctrl-space will select current work. 
 noremap <c-space> viw
 
@@ -674,64 +676,14 @@ noremap <c-space> viw
 inoremap <C-CR> <CR><Esc>O
 
 " Programming helps to quickly navigate the soruce "
-map <silent> <F6> :vim <cword> **/*.py<CR>
-map <silent> <F2> :tn<CR>
-map <silent> <F3> :cn<CR>
-map <silent> <F4> :!ctags -R .<CR>
-map <silent> <F5> :make<CR>
+noremap <silent> <F1> :vim <cword> **/*<CR>
+noremap <silent> <F2> :vim <cword> **/*.py<CR>
+noremap <silent> <F3> :tn<CR>
+noremap <silent> <F4> :cn<CR>
+noremap <silent> <F5> :!ctags -R .<CR>
+noremap <silent> <F6> :make<CR>
 inoremap <silent> <F5> <C-O>:make<CR>
 
-
-""""""""""""""""""""""""""""""
-" => Vim grep and ack
-""""""""""""""""""""""""""""""
-let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/user/bin/ack\ -nH
-
-" Location of the ack utility
-if !exists("g:ackprg")
-    let g:ackprg="ack -H --nocolor --nogroup --column"
-endif
-
-function! s:Ack(cmd, args)
-    redraw
-    echo "Searching ..."
-
-    " Format, used to manage column jump
-    if a:cmd =~# '-g$'
-        let g:ackformat="%f"
-    else
-        let g:ackformat="%f:%l:%c:%m"
-    end
-
-    let grepprg_bak=&grepprg
-    let grepformat_bak=&grepformat
-    try
-        let &grepprg=g:ackprg
-        let &grepformat=g:ackformat
-        silent execute a:cmd . " " . a:args
-    finally
-        let &grepprg=grepprg_bak
-        let &grepformat=grepformat_bak
-    endtry
-
-    if a:cmd =~# '^l'
-        botright lopen
-    else
-        botright copen
-    endif
-
-    exec "nnoremap <silent> <buffer> q :ccl<CR>" 
-
-    redraw!
-endfunction
-
-function! s:AckFromSearch(cmd, args)
-    let search =  getreg('/')
-    " translate vim regular expression to perl regular expression.
-    let search = substitute(search,'\(\\<\|\\>\)','\\b','g')
-    call s:Ack(a:cmd, '"' .  search .'" '. a:args)
-endfunction
 
 " Session
 let g:session_autoload = 'prompt'
