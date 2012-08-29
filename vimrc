@@ -670,13 +670,13 @@ noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel"
 
 " Ctrl-space will select current work. 
-noremap <c-space> viw
+noremap <space> viw
 
 " Ctrl-enter will create a new line after {} and insert a line. 
 inoremap <C-CR> <CR><Esc>O
 
 " Programming helps to quickly navigate the soruce "
-noremap <silent> <F1> :vim <cword> **/*<CR>
+noremap <silent> <F1> :Ack <cword><CR>
 noremap <silent> <F2> :vim <cword> **/*.py<CR>
 noremap <silent> <F3> :tn<CR>
 noremap <silent> <F4> :cn<CR>
@@ -684,6 +684,23 @@ noremap <silent> <F5> :!ctags -R .<CR>
 noremap <silent> <F6> :make<CR>
 inoremap <silent> <F5> <C-O>:make<CR>
 
+let g:CamelCaseComplete_complete = '.,w'
+let g:CamelCaseComplete_FindStartMark = ''
+let g:CamelCaseComplete_CaseInsensitiveFallback = 0
+
+map w <Plug>CamelCaseMotion_w
+map b <Plug>CamelCaseMotion_b
+map e <Plug>CamelCaseMotion_e
+unmap w
+unmap b
+unmap e
+
+omap iw <Plug>CamelCaseMotion_iw
+xmap iw <Plug>CamelCaseMotion_iw
+omap ib <Plug>CamelCaseMotion_ib
+xmap ib <Plug>CamelCaseMotion_ib
+omap ie <Plug>CamelCaseMotion_ie
+xmap ie <Plug>CamelCaseMotion_ie
 
 " Session
 let g:session_autoload = 'prompt'
@@ -717,3 +734,5 @@ command! -bang -nargs=* -complete=file AckFromSearch call s:AckFromSearch('grep<
 command! -bang -nargs=* -complete=file LAck call s:Ack('lgrep<bang>', <q-args>)
 command! -bang -nargs=* -complete=file LAckAdd call s:Ack('lgrepadd<bang>', <q-args>)
 command! -bang -nargs=* -complete=file AckFile call s:Ack('grep<bang> -g', <q-args>)
+
+
