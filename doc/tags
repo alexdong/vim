@@ -598,6 +598,7 @@ g:snippets_dir	snipMate.txt	/*g:snippets_dir*
 g:snips_author	snipMate.txt	/*g:snips_author*
 gi	clojure.txt	/*gi*
 global-example	yankring.txt	/*global-example*
+greplace.txt	greplace.txt	/*greplace.txt*
 gw	clojure.txt	/*gw*
 i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
 i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*

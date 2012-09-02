@@ -599,6 +599,7 @@ endfunction
 """""""""""""""""""""""""""""""
 au BufNewFile,BufRead *.less set filetype=less
 au BufNewFile,BufRead *.scss set filetype=scss
+au BufNewFile,BufRead *.jst.* set filetype=html
 
 
 """"""""""""""""""""""""""""""
