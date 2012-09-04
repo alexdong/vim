@@ -212,7 +212,7 @@ syntax enable "Enable syntax hl
 " Set font according to system
 " set gfn=Courier\ New:h12
 " set gfn=Consolas:h11
-set gfn=Monaco:h11
+set gfn=Monaco:h12
 set shell=/bin/zsh
 
 if has("gui_running")
@@ -411,7 +411,6 @@ endtry
 nmap <leader>f :FufFileWithCurrentBufferDir<CR>
 nmap <leader>b :FufBuffer<CR>
 nmap <leader>t :FufTaggedFile<CR>
-nmap <leader>bt :!ctags -R --extra=+f .<CR>
 
 " NERDTree
 " ,d -> To open up NERD tree buffer
@@ -671,18 +670,21 @@ noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 " Surround current word with "
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel"
 
-" Ctrl-space will select current work. 
+" Ctrl-space will select current word. 
 noremap <space> viw
 
 " Ctrl-enter will create a new line after {} and insert a line. 
 inoremap <C-CR> <CR><Esc>O
 
+" Delete all characters till next ) and enter insert mode. 
+noremap <leader>dp vf)xi
+
 " Programming helps to quickly navigate the soruce "
 noremap <silent> <F1> :Ack <cword><CR>
-noremap <silent> <F2> :vim <cword> **/*.py<CR>
+noremap <silent> <F2> :ta <cword><CR>
 noremap <silent> <F3> :tn<CR>
 noremap <silent> <F4> :cn<CR>
-noremap <silent> <F5> :!ctags -R .<CR>
+noremap <silent> <F5> :!/usr/local/bin/ctags -R .<CR>
 noremap <silent> <F6> :make<CR>
 inoremap <silent> <F5> <C-O>:make<CR>
 
@@ -733,13 +735,6 @@ let vimclojure#ParenRainbowColors = {
 let vimclojure#DynamicHighlighting = 1
 let vimclojure#FuzzyIndent = 1
 
-
-command! -bang -nargs=* -complete=file Ack call s:Ack('grep<bang>',<q-args>)
-command! -bang -nargs=* -complete=file AckAdd call s:Ack('grepadd<bang>', <q-args>)
-command! -bang -nargs=* -complete=file AckFromSearch call s:AckFromSearch('grep<bang>', <q-args>)
-command! -bang -nargs=* -complete=file LAck call s:Ack('lgrep<bang>', <q-args>)
-command! -bang -nargs=* -complete=file LAckAdd call s:Ack('lgrepadd<bang>', <q-args>)
-command! -bang -nargs=* -complete=file AckFile call s:Ack('grep<bang> -g', <q-args>)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NeoCompleteCache
@@ -808,13 +803,3 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
