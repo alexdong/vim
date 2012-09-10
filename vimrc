@@ -220,9 +220,9 @@ if has("gui_running")
   set background=dark
   set t_Co=256
   set background=dark
-  colorscheme torte "borland buttercream  guardian  peaksea
+  colorscheme darkblue "torte borland buttercream  guardian  peaksea
 else
-  colorscheme zellner
+  colorscheme darkblue "zellner
   set background=dark
 endif
 
@@ -754,11 +754,6 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ }
-
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
@@ -786,7 +781,7 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+" let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
