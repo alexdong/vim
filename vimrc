@@ -437,8 +437,10 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Remap VIM 0
-map 0 ^
+"Remap VIM 0 and disable ^ to train the finger
+noremap 0 ^
+noremap ^ <nop>
+
 
 "Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -669,6 +671,7 @@ noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 
 " Surround current word with "
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel"
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel'
 
 " Ctrl-space will select current word. 
 noremap <space> viw
@@ -777,8 +780,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " AutoComplPop like behavior.
 " let g:neocomplcache_enable_auto_select = 1
@@ -798,3 +799,16 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Clam support
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Switch support
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap - :Switch<cr>
+
