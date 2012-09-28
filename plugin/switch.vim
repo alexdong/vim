@@ -11,6 +11,8 @@ let g:switch_builtins =
       \   'ampersands': ['&&', '||'],
       \   'capital_true_false': ['True', 'False'],
       \   'true_false': ['true', 'false'],
+      \   'add_remove': ['add', 'remove', 'toggle'],
+      \   'enable_disable': ['enable', 'disable'],
       \   'ruby_hash_style': {
       \     ':\(\k\+\)\s\+=>': '\1:',
       \     '\<\(\k\+\):':     ':\1 =>',
@@ -63,6 +65,8 @@ else
         \   g:switch_builtins.ampersands,
         \   g:switch_builtins.capital_true_false,
         \   g:switch_builtins.true_false,
+        \   g:switch_builtins.add_remove,
+        \   g:switch_builtins.enable_disable,
         \ ]
 
   autocmd FileType eruby let b:switch_definitions =

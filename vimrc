@@ -515,19 +515,12 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby compiler ruby
 
-
-" Ragtag settings
-inoremap <M-o>       <Esc>o
-inoremap <C-j>       <Down>
-let g:ragtag_global_maps = 1
-
 " Change which file opens after executing :Rails command
 let g:rails_default_file='config/database.yml'
 source ~/.vim_runtime/ftplugin/ri.vim
 
 " Auto code complete
 imap <S-CR>    <CR><CR>end<Esc>-cc
-
 
 autocmd FileType ruby compiler ruby
 au FileType ruby call RubySettings()
@@ -540,24 +533,7 @@ function! RubySettings()
   set cinwords=if,else,while,do,for,switch,case
   set formatoptions=tcqr
   set cindent
-
-  map <leader>rt :Rtree<CR>
-  map <leader>ra :A<CR>
-  map <leader>rr :R<CR>
-
-  " :make to run the current test
-  autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ \"%:p\"
-  autocmd FileType ruby
-        \ if expand('%') =~# '_test\.rb$' |
-        \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
-        \ elseif expand('%') =~# '_spec\.rb$' |
-        \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
-        \ else |
-        \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
-        \ endif
-  autocmd User Bundler
-        \ if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
-  endfunction
+endfunction
 
 """"""""""""""""""""""""""""""
 " => Python section
@@ -591,7 +567,6 @@ function! JavaScriptSettings()
     set cinwords=if,else,while,do,for,switch,case
     set formatoptions=tcqr
     set cindent
-
 endfunction
 
 
@@ -672,9 +647,10 @@ noremap <Leader>r :!touch ./bin/run.wsgi<CR>
 " Surround current word with "
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel"
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel'
+nnoremap <leader>` viw<esc>a`<esc>hbi`<esc>lel`
 
 " Ctrl-space will select current word. 
-noremap <space> viw
+noremap <space> gf
 
 " Ctrl-enter will create a new line after {} and insert a line. 
 inoremap <C-CR> <CR><Esc>O
@@ -708,10 +684,6 @@ omap ib <Plug>CamelCaseMotion_ib
 xmap ib <Plug>CamelCaseMotion_ib
 omap ie <Plug>CamelCaseMotion_ie
 xmap ie <Plug>CamelCaseMotion_ie
-
-
-
-
 
 " Session
 let g:session_autoload = 'prompt'
@@ -811,4 +783,3 @@ vnoremap ! :ClamVisual<space>
 " Switch support
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap - :Switch<cr>
-
